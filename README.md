@@ -28,15 +28,3 @@ Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badge
 Click the extension's toolbar button to open **Bubble colors**. Click any state's circle (Kickable, Booked, In use, Busy, etc.) to pick a new color. Open ggLeap tabs update right away, including the legend. Label text switches between black and white to stay readable.
 
 Your colors are saved in this browser and survive restarts. Use ↺ to reset one state, or **Reset all colors** to go back to the defaults.
-
-## Publish
-
-See [STORE_LISTING.md](STORE_LISTING.md) for every field in the Chrome Web Store dashboard, and [PRIVACY.md](PRIVACY.md) for the privacy policy it asks for. Upload the zip from `./package.sh`. Bump `version` in `manifest.json` before each new upload.
-
-## How it works
-
-The extension reuses your own admin session. It copies the auth headers from the page's requests to `api.ggleap.com` (or falls back to `localStorage.jwt_token`). It reads `machines_list_requests` and `get_bookings`, and fetches `user_activity_graph_requests` (TimePlayed, today in Central time) for each logged-in PC. That's the same data the old `/pcs` command used. It only reads; it never changes anything in ggLeap.
-
-Files: `content.js` runs in the page and draws everything. `states.js` lists every bubble state and its default color. `colors.js` applies colors saved from the popup (`popup.html`/`popup.js`) as CSS variables.
-
-Badges attach inside each `glp-pc-layout-pc-item`, matched by its `aria-label` (e.g. `009`, `TS`). Positions are rescaled from the bubble's size, so the layout survives ggLeap's zoom. If the play-time request fails, the badge falls back to time since the machine's `LastStateUpdate`. Debug state: `window.__ggUptime` in DevTools.
