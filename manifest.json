@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Uptime Badges for ggLeap",
   "short_name": "Uptime Badges",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "See at a glance how long each PC has been in use, and which are kickable, on the ggLeap admin device dashboard.",
   "minimum_chrome_version": "111",
   "icons": {
@@ -11,11 +11,25 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "action": {
+    "default_title": "Bubble colors",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["https://admin.ggleap.com/*"],
-      "js": ["content.js"],
+      "js": ["states.js", "content.js"],
       "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://admin.ggleap.com/*"],
+      "js": ["states.js", "colors.js"],
       "run_at": "document_start"
     }
   ]

@@ -8,5 +8,5 @@ out="dist/uptime-badges-for-ggleap-${version}.zip"
 
 mkdir -p dist
 rm -f "$out"
-zip -q -X -r "$out" manifest.json content.js icons -x '*.DS_Store'
+zip -q -X -r "$out" manifest.json states.js content.js colors.js popup.html popup.css popup.js icons -x '*.DS_Store'
 echo "$out"
