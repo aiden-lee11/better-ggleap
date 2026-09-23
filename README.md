@@ -19,14 +19,37 @@ Pills show time played today (`1h57`, `45m`). ggLeap's green PC-health ring is h
 
 The layout matches the room: desks 1–5 and 6–10 as two columns, then stream / 15 / 14. Test PCs and anything else hide behind the **Show all** checkbox next to the zoom buttons. A collapsible **Legend** in the top-right corner explains the colors. Both settings are remembered per browser.
 
-## Install for testing
+## Install in Chrome
 
-1. Run `./package.sh`, which writes `dist/uptime-badges-for-ggleap-<version>.zip`. Or skip the zip and load this folder directly.
-2. Open `chrome://extensions` and turn on **Developer mode** (top right).
-3. Either click **Load unpacked** and pick this folder, or unzip the zip and pick the unzipped folder. Chrome can't install a `.zip` directly.
-4. Open https://admin.ggleap.com while signed in, then go to the Dashboard.
+Requires Chrome 111 or newer. Other Chromium browsers (Edge, Brave, Arc) work the same way through their own extensions page.
 
-Requires Chrome 111 or newer.
+1. **Download the code.** On this repo's GitHub page, click the green **Code** button → **Download ZIP**, then unzip it. Or clone it:
+   ```sh
+   git clone https://github.com/aiden-lee11/better-ggleap.git
+   ```
+   Put the folder somewhere you won't delete it. Chrome loads the extension from that folder every time it starts.
+2. **Open the extensions page.** Go to `chrome://extensions` in the address bar.
+3. **Turn on Developer mode** with the toggle in the top-right corner.
+4. **Click Load unpacked** (top left) and select the folder that contains `manifest.json`. If you downloaded the ZIP, that's the `better-ggleap-main` folder inside the unzipped download.
+5. **Refresh any open ggLeap tabs.** The extension only starts on pages loaded after it's installed.
+6. Open https://admin.ggleap.com, sign in, and go to the **Dashboard**. The device dashboard should show time badges, the new colors and the legend.
+
+Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badges for ggLeap**. It has no button of its own, so pinning just shows that it's installed.
+
+### Updating
+
+Download the ZIP again and replace the old folder's contents, or run `git pull` in your clone. Then click the reload icon on the extension's card in `chrome://extensions` and refresh the ggLeap tab.
+
+### Not seeing anything?
+
+- Refresh the ggLeap tab. Tabs that were open before the install don't get the extension.
+- In `chrome://extensions`, make sure the extension is switched on and has no red **Errors** button.
+- On the ggLeap tab, open DevTools (⌘⌥J on Mac, Ctrl+Shift+J on Windows) and type `__ggUptime` in the Console. If it says `undefined`, the extension isn't running on that page. Reload it in `chrome://extensions` and refresh the tab.
+- Badges only appear on PCs someone is using. If every PC is off or open, the dashboard is correctly blank apart from the colors and legend.
+
+### Building a zip for the Chrome Web Store
+
+Run `./package.sh`, which writes `dist/uptime-badges-for-ggleap-<version>.zip`. You only need this to upload to the store, not to install.
 
 ## Publish
 
