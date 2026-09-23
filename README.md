@@ -2,7 +2,7 @@
 
 A Chrome extension that labels each PC bubble on the admin.ggleap.com device dashboard with how long the current player has played today, and colors kickable PCs.
 
-![preview](preview.png)
+![preview](docs/preview.png)
 
 The layout matches the room: desks 1–5 and 6–10 as two columns, then stream / 15 / 14. Test PCs and anything else hide behind the **Show all** checkbox next to the zoom buttons. A collapsible **Legend** in the top-right corner explains the colors. Both settings are remembered per browser.
 
@@ -17,7 +17,7 @@ Requires Chrome 111 or newer. Other Chromium browsers (Edge, Brave, Arc) work th
    Put the folder somewhere you won't delete it. Chrome loads the extension from that folder every time it starts.
 2. **Open the extensions page.** Go to `chrome://extensions` in the address bar.
 3. **Turn on Developer mode** with the toggle in the top-right corner.
-4. **Click Load unpacked** (top left) and select the folder that contains `manifest.json`. If you downloaded the ZIP, that's the `better-ggleap-main` folder inside the unzipped download.
+4. **Click Load unpacked** (top left) and select the **`src`** folder inside the download (for the ZIP, `better-ggleap-main/src`). That's the folder with `manifest.json` in it.
 5. **Refresh any open ggLeap tabs.** The extension only starts on pages loaded after it's installed.
 6. Open https://admin.ggleap.com, sign in, and go to the **Dashboard**. The device dashboard should show time badges, the new colors and the legend.
 
