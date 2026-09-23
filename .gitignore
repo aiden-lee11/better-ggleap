@@ -1,2 +1,7 @@
 dist/
 .DS_Store
+
+# Chrome Web Store upload materials (kept locally, not published)
+STORE_LISTING.md
+package.sh
+store/
