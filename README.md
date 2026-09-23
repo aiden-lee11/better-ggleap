@@ -4,19 +4,6 @@ A Chrome extension that labels each PC bubble on the admin.ggleap.com device das
 
 ![preview](preview.png)
 
-*Mock data.* Bubble colors follow `/pcs`:
-
-- **orange** = kickable: 2h+ today and not in a current ggLeap booking
-- **purple** = in a current booking
-- **red** = in use
-- **cyan** = admin mode
-- **green** = open
-- **pink** = busy: starting, logging in/out, shutting down. ggLeap's own orange-yellow is recolored so it can't be mistaken for kickable.
-- **gray** = locked
-- **dark gray** = off
-
-Pills show time played today (`1h57`, `45m`). ggLeap's green PC-health ring is hidden. Every color can be changed from the extension's toolbar button (see [Changing colors](#changing-colors)).
-
 The layout matches the room: desks 1–5 and 6–10 as two columns, then stream / 15 / 14. Test PCs and anything else hide behind the **Show all** checkbox next to the zoom buttons. A collapsible **Legend** in the top-right corner explains the colors. Both settings are remembered per browser.
 
 ## Install in Chrome
@@ -41,21 +28,6 @@ Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badge
 Click the extension's toolbar button to open **Bubble colors**. Click any state's circle (Kickable, Booked, In use, Busy, etc.) to pick a new color. Open ggLeap tabs update right away, including the legend. Label text switches between black and white to stay readable.
 
 Your colors are saved in this browser and survive restarts. Use ↺ to reset one state, or **Reset all colors** to go back to the defaults.
-
-### Updating
-
-Download the ZIP again and replace the old folder's contents, or run `git pull` in your clone. Then click the reload icon on the extension's card in `chrome://extensions` and refresh the ggLeap tab.
-
-### Not seeing anything?
-
-- Refresh the ggLeap tab. Tabs that were open before the install don't get the extension.
-- In `chrome://extensions`, make sure the extension is switched on and has no red **Errors** button.
-- On the ggLeap tab, open DevTools (⌘⌥J on Mac, Ctrl+Shift+J on Windows) and type `__ggUptime` in the Console. If it says `undefined`, the extension isn't running on that page. Reload it in `chrome://extensions` and refresh the tab.
-- Badges only appear on PCs someone is using. If every PC is off or open, the dashboard is correctly blank apart from the colors and legend.
-
-### Building a zip for the Chrome Web Store
-
-Run `./package.sh`, which writes `dist/uptime-badges-for-ggleap-<version>.zip`. You only need this to upload to the store, not to install.
 
 ## Publish
 
