@@ -230,8 +230,10 @@
   }
 
   const BUBBLE = "glp-pc-layout-pc-item[aria-label]";
-  const BUSY_PINK = "#f08cc0";
-  const BUSY_STATES = ["starting-up", "restarting", "user-logging-in", "user-logging-out", "shutting-down", "idle-shutting-down"];
+  // From states.js. Each color is a CSS variable (--ggu-<key>) that colors.js sets
+  // from the popup's saved choices; unset, it falls back to the default.
+  const STATES = globalThis.GGU_STATES;
+  const colorOf = (state) => `var(--ggu-${state.key}, ${state.css})`;
 
   // Where each PC sits, matching the room (and the /pcs image): desks 1-5 and 6-10
   // as two columns, then a back-room column of stream / 15 / 14. Anything else
@@ -309,13 +311,13 @@
         font: 600 10px/1 system-ui, sans-serif; padding: 2px 5px; border-radius: 8px;
         background: #3b4250; color: #fff; box-shadow: 0 0 0 1.5px #22262e;
       }
-      /* ggLeap's busy states use nearly the same orange as kickable; make them pink */
-      ${BUSY_STATES.map((c) => `${BUBBLE} .pc-item__status_${c}`).join(", ")} { background-color: ${BUSY_PINK} !important; }
+      /* bubble fills; kickable/booked selectors are more specific, so they win over the ggLeap state */
+      ${STATES.map((st) => `${GGU_SELECTORS(st).fill.join(", ")} { background-color: ${colorOf(st)} !important; }`).join("\n")}
+      /* ggLeap also paints the label box in the state color; keep it clear so translucent fills (locked) don't double up */
+      ${BUBBLE} .pc-item__title { background-color: transparent !important; }
+      ${BUBBLE}.gg-reserved .pc-item__title { color: #fff !important; }
       /* ggLeap's PC health ring: nobody reads it, and it muddies the status colors */
       ${BUBBLE} svg.health-bar { display: none !important; }
-      ${BUBBLE}.gg-kick .pc-item__status, ${BUBBLE}.gg-kick .pc-item__title { background-color: #ffa503 !important; }
-      ${BUBBLE}.gg-reserved .pc-item__status, ${BUBBLE}.gg-reserved .pc-item__title { background-color: #9b59b3 !important; }
-      ${BUBBLE}.gg-reserved .pc-item__title { color: #fff !important; }
       #gg-show-all {
         position: absolute; z-index: 3; display: flex; align-items: center; gap: 6px;
         font: 600 11px/1 system-ui, sans-serif; color: #c9ced8; cursor: pointer; user-select: none;
@@ -356,18 +358,6 @@
     legendOpen = localStorage.getItem("gg-uptime-legend") !== "closed";
   } catch {}
 
-  // Extension colors first, then every ggLeap bubble state (pc-item__status_*).
-  const LEGEND = [
-    ["#ffa503", "Kickable", "on 2h+ today, not booked"],
-    ["#9b59b3", "Booked", "in a ggLeap booking right now"],
-    ["var(--gg-ui-alert-error, #d65e5c)", "In use", ""],
-    ["var(--gg-ui-alert-info, #4ab6e8)", "Admin mode", ""],
-    ["var(--gg-widget-green, #7ab889)", "Open", ""],
-    [BUSY_PINK, "Busy", "starting, restarting, logging in/out, shutting down"],
-    ["var(--gg-radiobutton-locked, rgba(255,255,255,.32))", "Locked", ""],
-    ["var(--gg-radiobutton-off, #171a1c)", "Off", ""],
-    ["#fff", "Unknown", ""],
-  ];
 
   function ensureLegend() {
     const panel = document.getElementById("pcLayoutZoomArea")?.parentElement;
@@ -376,9 +366,9 @@
     if (!box) {
       box = document.createElement("div");
       box.id = "gg-legend";
-      const rows = LEGEND.map(
-        ([color, name, note]) =>
-          `<li><i class="dot" style="background:${color}"></i><div><b>${name}</b>${note ? ` <span>${note}</span>` : ""}</div></li>`,
+      const rows = STATES.map(
+        (st) =>
+          `<li><i class="dot" style="background:${colorOf(st)}"></i><div><b>${st.label}</b>${st.note ? ` <span>${st.note}</span>` : ""}</div></li>`,
       ).join("");
       box.innerHTML = `<button type="button" aria-expanded="true"><span>Legend</span><span aria-hidden="true"></span></button>
         <ul>${rows}<li><i class="pill"></i><div><b>1h57</b> <span>time played today</span></div></li></ul>`;
