@@ -1,6 +1,6 @@
 # Privacy Policy: Uptime Badges for ggLeap
 
-_Last updated: September 23, 2026_
+_Last updated: September 23, 2026 (version 1.1.0)_
 
 Uptime Badges for ggLeap is a Chrome extension for gaming-center staff. It adds labels to the device dashboard on `admin.ggleap.com`. This policy explains what data it touches and what it does with that data.
 
@@ -24,7 +24,10 @@ The extension runs only on pages under `https://admin.ggleap.com/`, and only whi
 
 ## What it stores
 
-It saves two display preferences in the browser's local storage for `admin.ggleap.com`: whether "Show all" is checked and whether the legend is open. You can clear them by clearing site data for `admin.ggleap.com`.
+Everything it stores stays in your browser:
+
+- **Display preferences:** whether "Show all" is checked and whether the legend is open. These go in the browser's local storage for `admin.ggleap.com`, and clearing that site's data removes them.
+- **Your color choices** from the extension's popup. These go in the extension's own storage (`chrome.storage.local`) on your computer. They are never synced or sent anywhere, and "Reset all colors" or removing the extension clears them.
 
 ## Contact
 

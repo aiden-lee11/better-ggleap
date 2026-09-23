@@ -20,12 +20,13 @@ Copy these into the Chrome Web Store Developer Dashboard. Upload the zip made by
 > • Bubbles are colored by status: orange = kickable (2h+ today and not booked), purple = in a current ggLeap booking, red = in use, cyan = admin mode, green = open, pink = starting / logging in or out / shutting down, gray = locked, dark gray = off.
 > • PCs are arranged like the room, with test PCs tucked behind a "Show all" checkbox.
 > • A collapsible legend explains the colors.
+> • Don't like a color? Click the toolbar button to pick your own for any state. Your choices are saved.
 >
 > The extension uses your existing ggLeap admin session. It only reads data from ggLeap and never changes anything. No data leaves your browser except requests to ggLeap's own API.
 >
 > Not affiliated with or endorsed by ggCircuit / ggLeap.
 
-**Screenshots (1280×800):** `store/screenshot-1-dashboard.png`, `store/screenshot-2-show-all.png`, `store/screenshot-3-legend-folded.png`
+**Screenshots (1280×800):** `store/screenshot-1-dashboard.png`, `store/screenshot-2-show-all.png`, `store/screenshot-3-legend-folded.png`, `store/screenshot-4-colors.png`
 
 **Small promo tile (440×280):** `store/promo-small-440x280.png`
 
@@ -40,6 +41,10 @@ Copy these into the Chrome Web Store Developer Dashboard. Upload the zip made by
 **Permission justification: host access to `https://admin.ggleap.com/*` (content script):**
 
 > The extension has to run on the ggLeap admin dashboard to read the page's PC bubbles and draw time badges and status colors on them. It runs on no other site.
+
+**Permission justification: `storage`:**
+
+> Saves the bubble colors the user picks in the extension's popup, so they persist between sessions. Nothing else is stored.
 
 **Remote code:** No. All JavaScript is included in the package.
 

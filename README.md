@@ -15,7 +15,7 @@ A Chrome extension that labels each PC bubble on the admin.ggleap.com device das
 - **gray** = locked
 - **dark gray** = off
 
-Pills show time played today (`1h57`, `45m`). ggLeap's green PC-health ring is hidden.
+Pills show time played today (`1h57`, `45m`). ggLeap's green PC-health ring is hidden. Every color can be changed from the extension's toolbar button (see [Changing colors](#changing-colors)).
 
 The layout matches the room: desks 1–5 and 6–10 as two columns, then stream / 15 / 14. Test PCs and anything else hide behind the **Show all** checkbox next to the zoom buttons. A collapsible **Legend** in the top-right corner explains the colors. Both settings are remembered per browser.
 
@@ -34,7 +34,13 @@ Requires Chrome 111 or newer. Other Chromium browsers (Edge, Brave, Arc) work th
 5. **Refresh any open ggLeap tabs.** The extension only starts on pages loaded after it's installed.
 6. Open https://admin.ggleap.com, sign in, and go to the **Dashboard**. The device dashboard should show time badges, the new colors and the legend.
 
-Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badges for ggLeap**. It has no button of its own, so pinning just shows that it's installed.
+Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badges for ggLeap** so its button is always visible.
+
+### Changing colors
+
+Click the extension's toolbar button to open **Bubble colors**. Click any state's circle (Kickable, Booked, In use, Busy, etc.) to pick a new color. Open ggLeap tabs update right away, including the legend. Label text switches between black and white to stay readable.
+
+Your colors are saved in this browser and survive restarts. Use ↺ to reset one state, or **Reset all colors** to go back to the defaults.
 
 ### Updating
 
@@ -58,5 +64,7 @@ See [STORE_LISTING.md](STORE_LISTING.md) for every field in the Chrome Web Store
 ## How it works
 
 The extension reuses your own admin session. It copies the auth headers from the page's requests to `api.ggleap.com` (or falls back to `localStorage.jwt_token`). It reads `machines_list_requests` and `get_bookings`, and fetches `user_activity_graph_requests` (TimePlayed, today in Central time) for each logged-in PC. That's the same data the old `/pcs` command used. It only reads; it never changes anything in ggLeap.
+
+Files: `content.js` runs in the page and draws everything. `states.js` lists every bubble state and its default color. `colors.js` applies colors saved from the popup (`popup.html`/`popup.js`) as CSS variables.
 
 Badges attach inside each `glp-pc-layout-pc-item`, matched by its `aria-label` (e.g. `009`, `TS`). Positions are rescaled from the bubble's size, so the layout survives ggLeap's zoom. If the play-time request fails, the badge falls back to time since the machine's `LastStateUpdate`. Debug state: `window.__ggUptime` in DevTools.
