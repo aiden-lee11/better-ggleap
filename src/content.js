@@ -446,7 +446,7 @@
       el.style.removeProperty("display");
       const u = (el.offsetWidth || 40) / 40;
       const backGap = slot.col >= 2 ? 16 * u : 0; // small aisle before the back-room column
-      const left = 10 * u + slot.col * 54 * u + backGap;
+      const left = 26 + slot.col * 54 * u + backGap; // 26px: line the first column up with the widget title
       const top = 10 * u + slot.row * 58 * u; // extra row height leaves room for the pill
       el.style.setProperty("left", `${left}px`, "important");
       el.style.setProperty("top", `${top}px`, "important");
