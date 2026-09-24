@@ -29,7 +29,7 @@
     },
     {
       "matches": ["https://admin.ggleap.com/*"],
-      "js": ["states.js", "colors.js"],
+      "js": ["colors.js"],
       "run_at": "document_start"
     }
   ]

@@ -1,5 +1,5 @@
-// Every bubble color the extension knows about. Shared by the page script
-// (content.js), the storage bridge (colors.js) and the popup (popup/).
+// Every bubble color the extension knows about. Used by the page script
+// (content.js) and the popup (popup/).
 //
 // - `css`: what the bubble uses when the user hasn't picked a color. For ggLeap's
 //   own states this is ggLeap's CSS variable, so uncustomized bubbles look exactly

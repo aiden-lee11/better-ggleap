@@ -300,6 +300,35 @@
     return "";
   }
 
+  // Colors picked in the popup arrive from colors.js as JSON in <html data-ggu-colors>.
+  // Set them as the --ggu-<key> variables the fill rules read, and give those
+  // bubbles black or white label text, whichever reads better.
+  function textOn(hex) {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+    const lin = (c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+    return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b) > 0.4 ? "#111" : "#fff";
+  }
+
+  function applyCustomColors() {
+    let colors = {};
+    try {
+      colors = JSON.parse(document.documentElement.dataset.gguColors || "{}");
+    } catch {}
+    const custom = STATES.filter((st) => /^#[0-9a-f]{6}$/i.test(colors[st.key] || ""));
+    const vars = custom.map((st) => `--ggu-${st.key}: ${colors[st.key]};`).join(" ");
+    // `html` prefix: outrank the default label colors in ensureStyle
+    const labels = custom
+      .map((st) => `${GGU_SELECTORS(st).title.map((sel) => `html ${sel}`).join(", ")} { color: ${textOn(colors[st.key])} !important; }`)
+      .join("\n");
+    let style = document.getElementById("gg-uptime-colors");
+    if (!style) {
+      style = document.createElement("style");
+      style.id = "gg-uptime-colors";
+      document.head.append(style);
+    }
+    style.textContent = `:root { ${vars} }\n${labels}`;
+  }
+
   function ensureStyle() {
     if (document.getElementById("gg-uptime-style")) return;
     const style = document.createElement("style");
@@ -528,6 +557,11 @@
         tick();
       }, 250);
     }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["class", "aria-label"] });
+    applyCustomColors();
+    new MutationObserver(applyCustomColors).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-ggu-colors"],
+    });
     setInterval(tick, 1000);
     tick();
   }
