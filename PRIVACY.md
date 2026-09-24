@@ -1,8 +1,8 @@
-# Privacy Policy: Uptime Badges for ggLeap
+# Privacy Policy: Better ggLeap
 
 _Last updated: September 23, 2026 (version 1.1.0)_
 
-Uptime Badges for ggLeap is a Chrome extension for gaming-center staff. It adds labels to the device dashboard on `admin.ggleap.com`. This policy explains what data it touches and what it does with that data.
+Better ggLeap is a Chrome extension for gaming-center staff. It is not affiliated with or endorsed by ggCircuit / ggLeap. It adds labels to the device dashboard on `admin.ggleap.com`. This policy explains what data it touches and what it does with that data.
 
 ## What it accesses
 

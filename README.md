@@ -1,4 +1,4 @@
-# Uptime Badges for ggLeap
+# Better ggLeap
 
 A Chrome extension that labels each PC bubble on the admin.ggleap.com device dashboard with how long the current player has played today, and colors kickable PCs.
 
@@ -21,7 +21,7 @@ Requires Chrome 111 or newer. Other Chromium browsers (Edge, Brave, Arc) work th
 5. **Refresh any open ggLeap tabs.** The extension only starts on pages loaded after it's installed.
 6. Open https://admin.ggleap.com, sign in, and go to the **Dashboard**. The device dashboard should show time badges, the new colors and the legend.
 
-Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Uptime Badges for ggLeap** so its button is always visible.
+Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Better ggLeap** so its button is always visible.
 
 ### Changing colors
 

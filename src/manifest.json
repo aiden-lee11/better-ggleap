@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Uptime Badges for ggLeap",
-  "short_name": "Uptime Badges",
+  "name": "Better ggLeap",
+  "short_name": "Better ggLeap",
   "version": "1.1.0",
   "description": "See at a glance how long each PC has been in use, and which are kickable, on the ggLeap admin device dashboard.",
   "minimum_chrome_version": "111",
