@@ -23,6 +23,12 @@ Requires Chrome 111 or newer. Other Chromium browsers (Edge, Brave, Arc) work th
 
 Optional: click the puzzle-piece icon in Chrome's toolbar and pin **Better ggLeap** so its button is always visible.
 
+### Booking from Discord
+
+When someone reserves PCs with the NU Esports bot, the staff ping in the reservations channel has a **Book in ggLeap** button. With the extension installed, that link opens ggLeap with a panel showing the team, time and PCs. Click **Create booking** and the extension books those PCs for you. Nothing is booked until you click. If ggLeap sends you to the login page first, the panel comes back once you're signed in.
+
+The booking is named after the team and tied to the manager's ggLeap account, found by the email the bot has on file for them. If no ggLeap account uses that email, the panel says so and you book by hand. Without the extension, the button just opens the booking grid and you book by hand as before.
+
 ### Changing colors
 
 Click the extension's toolbar button to open **Bubble colors**. Click any state's circle (Kickable, Booked, In use, Busy, etc.) to pick a new color. Open ggLeap tabs update right away, including the legend. Label text switches between black and white to stay readable.

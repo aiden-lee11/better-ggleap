@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": ["https://admin.ggleap.com/*"],
-      "js": ["states.js", "content.js"],
+      "js": ["states.js", "content.js", "booking.js"],
       "world": "MAIN",
       "run_at": "document_start"
     },

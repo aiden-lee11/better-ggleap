@@ -21,6 +21,7 @@
     bubbles: new Map(), // <glp-pc-layout-pc-item> -> machine
   };
   window.__ggUptime = state; // for poking at in DevTools
+  window.__ggAuthHeaders = () => authHeaders(); // booking.js calls the API with the same auth
 
   // ---------------------------------------------------------------- network
 
@@ -535,9 +536,11 @@
     const ours = (n) =>
       n.id === "gg-show-all" ||
       n.id === "gg-legend" ||
+      n.id === "gg-booking" ||
+      n.id === "gg-booking-style" ||
       n.classList?.contains("gg-uptime") ||
       n.parentElement?.classList.contains("gg-uptime") ||
-      n.parentElement?.closest?.("#gg-show-all, #gg-legend");
+      n.parentElement?.closest?.("#gg-show-all, #gg-legend, #gg-booking");
     new MutationObserver((muts) => {
       const relevant = muts.filter(
         (m) =>
